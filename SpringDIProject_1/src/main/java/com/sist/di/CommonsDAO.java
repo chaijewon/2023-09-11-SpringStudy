@@ -4,6 +4,7 @@ import java.sql.*;
 
 public class CommonsDAO 
 {
+	
     private Connection conn;
     private PreparedStatement ps;
     private String url,username,password;
