@@ -16,7 +16,6 @@ public class CommonsDAO
     		Class.forName(driver);
     	}catch(Exception ex) {}
     }
-    
 	public void setUrl(String url) {
 		this.url = url;
 	}
