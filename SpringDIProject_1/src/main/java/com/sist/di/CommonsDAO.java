@@ -20,6 +20,7 @@ public class CommonsDAO
 	public void setUrl(String url) {
 		this.url = url;
 	}
+	
 	public void setUsername(String username) {
 		this.username = username;
 	}
