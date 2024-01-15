@@ -17,7 +17,7 @@ public class CommonsDAO
     	}catch(Exception ex) {}
     }
 	public void setUrl(String url) {
-		this.url = url;//
+		this.url = url;////////
 	}
 	
 	public void setUsername(String username) {
