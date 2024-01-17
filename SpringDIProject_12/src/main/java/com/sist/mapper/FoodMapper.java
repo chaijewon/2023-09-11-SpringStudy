@@ -1,5 +1,9 @@
 package com.sist.mapper;
 import java.util.*;
+
+import org.apache.ibatis.annotations.Param;
+import org.apache.ibatis.annotations.Select;
+
 import com.sist.dao.*;
 public interface FoodMapper {
   /*
@@ -12,4 +16,9 @@ public interface FoodMapper {
 		  동적 쿼리 
    */
   public List<FoodVO> foodFindData(Map map);
+  
+  @Select("SELECT fno,name,address "
+		 +"FROM food_menu_house "
+		 +"WHERE name LIKE '%'||#{name}||'%' AND address LIKE '%'||#{address}||'%'")
+  public List<FoodVO> foodFindData2(@Param("name") String name,@Param("address") String address);
 }
