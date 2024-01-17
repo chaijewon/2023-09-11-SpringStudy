@@ -31,7 +31,7 @@ public interface SeoulMapper {
    *           ps.setInt(1,no);
    *           ResultSet rs=ps.executeQuery();
    *           rs.next();
-   *           vo.setNo(rs.getInt(1));
+   *           vo.setNo(rs.getInt("no"));
    *           vo.setTitle(rs.getString(2))
    *           vo.setMsg(rs.getString(3))
    *           vo.setAddress(rs.getString(4))
