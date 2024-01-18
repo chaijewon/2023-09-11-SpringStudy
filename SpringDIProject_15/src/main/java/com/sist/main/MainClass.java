@@ -2,15 +2,23 @@ package com.sist.main;
 import java.util.*;
 
 import org.springframework.context.ApplicationContext;
+import org.springframework.context.annotation.AnnotationConfigApplicationContext;
 import org.springframework.context.support.ClassPathXmlApplicationContext;
 
+import com.sist.config.CustomerConfig;
+import com.sist.config.DataBaseConfig;
 import com.sist.dao.*;
+
 public class MainClass {
 
 	public static void main(String[] args) {
 		// TODO Auto-generated method stub
-        ApplicationContext app=
-        	new ClassPathXmlApplicationContext("application-*.xml");
+        /*ApplicationContext app=
+        	new ClassPathXmlApplicationContext("application-*.xml");*/
+		Class[] cls={CustomerConfig.class,
+				DataBaseConfig.class};
+		AnnotationConfigApplicationContext app=
+				new AnnotationConfigApplicationContext(cls);
         FoodDAO dao=(FoodDAO)app.getBean("fDao");
         Scanner scan=new Scanner(System.in);
         while(true)

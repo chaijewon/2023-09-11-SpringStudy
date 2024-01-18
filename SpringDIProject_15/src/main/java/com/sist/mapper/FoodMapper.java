@@ -22,25 +22,40 @@ import org.apache.ibatis.annotations.Select;
 import com.sist.dao.FoodVO;
 public interface FoodMapper {
   // XML
+	/*
+	 *   <trim prefix="(" suffix=")" prefixOverrides="("
+	 *         접두어       접미어 
+	 *    suffixOverrides=")"
+	 *   >
+	 *   => 추가 / 제거 
+	 *     name LIKE '%'||#{ss}||'%'
+	 *   </trim>
+	 *   
+	 *   => name LIKE '%'||#{ss}||'%'
+	 *   
+	 *   <foreach collection=\"fsArr\" item=\"fd\">
+	 *                        배열/리스트      값을 한개씩 읽기
+	 *   for(String fd:fsArr)
+	 *   
+	 *   ==> fd=='A'  "A" == 65
+	 */
   @Select("<script>"
 		 +"SELECT fno,name,type,address "
 		 +"FROM food_menu_house "
 		 +"WHERE "
-		 +"<trim prefix=\"(\" suffix=\")\" prefixOverrides=\"OR\">"
+		 +"<trim  prefixOverrides=\"OR\">"
 		 +"<foreach collection=\"fsArr\" item=\"fd\">"
-		 +"<trim prefix=\"OR\">"
 		 +"<choose>"
 		 +"<when test=\"fd=='N'.toString()\">"
-		 +"name LIKE '%'||#{ss}||'%'"
+		 +"OR name LIKE '%'||#{ss}||'%'"
 		 +"</when>"
 		 +"<when test=\"fd=='A'.toString()\">"
-		 +"address LIKE '%'||#{ss}||'%'"
+		 +"OR address LIKE '%'||#{ss}||'%'"
 		 +"</when>"
 		 +"<when test=\"fd=='T'.toString()\">"
-		 +"type LIKE '%'||#{ss}||'%'"
+		 +"OR type LIKE '%'||#{ss}||'%'"
 		 +"</when>"
 		 +"</choose>"
-		 +"</trim>"
 		 +"</foreach>"
 		 +"</trim>"
 		 +"</script>"
