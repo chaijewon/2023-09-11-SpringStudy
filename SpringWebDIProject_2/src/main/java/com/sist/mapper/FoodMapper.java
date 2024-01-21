@@ -1,6 +1,7 @@
 package com.sist.mapper;
 
 import java.util.List;
+import java.util.Map;
 
 import org.apache.ibatis.annotations.Param;
 import org.apache.ibatis.annotations.Select;
@@ -22,4 +23,19 @@ public interface FoodMapper {
 			  +"FROM food_menu_house "
 			  +"WHERE fno=#{fno}")
 	  public FoodVO foodDetailData(int fno);
+	  
+	  @Select("SELECT fno,poster,name,num "
+				 +"FROM (SELECT fno,poster,name,rownum as num "
+				 +"FROM (SELECT fno,poster,name "
+				 +"FROM food_menu_house "
+				 +"WHERE address LIKE '%'||#{address}||'%' "
+				 +"ORDER BY fno ASC)) "
+				 +"WHERE num BETWEEN #{start} AND #{end}")
+	  public List<FoodVO> foodFindData(Map map);
+	  
+	  @Select("SELECT CEIL(COUNT(*)/12.0) "
+			 +"FROM food_menu_house "
+			 +"WHERE address LIKE '%'||#{address}||'%'")
+	  public int foodFindTotalPage(String address);
+	  
 }

@@ -62,4 +62,10 @@ public class FoodController {
 	    */
 	   return "food/detail";
    }
+   
+   @RequestMapping("food/find.do")
+   public String food_find()
+   {
+	   return "food/find";
+   }
 }

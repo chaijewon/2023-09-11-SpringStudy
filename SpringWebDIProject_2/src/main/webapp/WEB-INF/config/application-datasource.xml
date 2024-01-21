@@ -24,4 +24,5 @@
     <mybatis-spring:scan base-package="com.sist.mapper"
       factory-ref="ssf"
     />
+    
 </beans>
