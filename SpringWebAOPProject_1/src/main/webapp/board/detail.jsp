@@ -18,7 +18,7 @@
 </head>
 <body>
   <div class="container">
-    <div class="col-sm-9">
+    <div class="row">
       <h3 class="text-center">내용보기</h3>
       <table class="table">
        <tr>
@@ -43,7 +43,7 @@
        </tr>
        <tr>
          <td colspan="4" class="text-right">
-          <a href="#" class="btn btn-xs btn-danger">답변</a>
+          <a href="reply.do?pno=${vo.no }" class="btn btn-xs btn-danger">답변</a>
           <a href="update.do?no=${vo.no }" class="btn btn-xs btn-success">수정</a>
           <a href="#" class="btn btn-xs btn-info">삭제</a>
           <a href="list.do" class="btn btn-xs btn-warning">목록</a>
@@ -51,9 +51,8 @@
        </tr>
       </table>
     </div>
-    <div class="col-sm-3">
-      
-    </div>
+    <div style="height: 20px"></div>
+    <jsp:include page="top.jsp"></jsp:include>
   </div>
 </body>
 </html>

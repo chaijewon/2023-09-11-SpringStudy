@@ -19,13 +19,14 @@
 <body>
   <div class="container">
    <div class="row">
-     <h3 class="text-center">글쓰기</h3>
-     <form method="post" action="insert_ok.do">
+     <h3 class="text-center">답변하기</h3>
+     <form method="post" action="reply_ok.do">
      <table class="table">
        <tr>
         <th width=15% class="text-right">이름</th>
         <td width=85%>
           <input type=text name=name size=15 class="input-sm">
+          <input type="hidden" name=pno value="${pno }">
         </td>
        </tr>
        <tr>
@@ -48,7 +49,7 @@
        </tr>
        <tr>
          <td colspan="2" class="text-center">
-          <input type="submit" value="글쓰기" class="btn-sm btn-success">
+          <input type="submit" value="답변" class="btn-sm btn-success">
           <input type="button" value="취소" class="btn-sm btn-warning"
            onclick="javascript:history.back()">
          </td>

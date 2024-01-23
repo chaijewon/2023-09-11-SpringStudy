@@ -3,6 +3,8 @@ import java.util.*;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
+import org.springframework.transaction.annotation.Propagation;
+import org.springframework.transaction.annotation.Transactional;
 
 import com.sist.mapper.*;
 @Repository
@@ -41,5 +43,23 @@ public class BoardDAO {
 		   mapper.boardUpdate(vo);
 	   }
 	   return bCheck;
+   }
+   public List<BoardVO> boardTop5()
+   {
+	   return mapper.boardTop5();
+   }
+   @Transactional(propagation = Propagation.REQUIRED,
+		      rollbackFor = Exception.class) 
+   public void boardReplyInsert(int pno,BoardVO vo)
+   {
+	  BoardVO pvo=mapper.boardParentInfoData(pno);
+	  mapper.boardGroupStepIncrement(pvo);
+	  vo.setGroup_id(pvo.getGroup_id());
+	  vo.setGroup_step(pvo.getGroup_step()+1);
+	  vo.setGroup_tab(pvo.getGroup_tab()+1);
+	  vo.setRoot(pno);
+	  mapper.boardReplyInsert(vo);
+	  mapper.boardDepthIncrement(pno);
+	  
    }
 }
