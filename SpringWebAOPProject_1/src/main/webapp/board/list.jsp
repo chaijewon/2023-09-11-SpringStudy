@@ -47,9 +47,14 @@
 	            </c:forEach>
 	            <img src="re_icon.png">
 	           </c:if>
-	           <a href="detail.do?no=${vo.no }">
-	            ${vo.subject }
-	           </a>
+	           <c:if test="${vo.subject=='관리자가 삭제한 게시물입니다' }">
+	            <span style="color:gray">${vo.subject }</span>
+	           </c:if>
+	           <c:if test="${vo.subject!='관리자가 삭제한 게시물입니다' }">
+	            <a href="detail.do?no=${vo.no }">
+	             ${vo.subject }
+	            </a>
+	           </c:if>
 	         </td>
 	         <td width=10% class="text-center">${vo.name }</td>
 	         <td width=15% class="text-center">${vo.dbday }</td>

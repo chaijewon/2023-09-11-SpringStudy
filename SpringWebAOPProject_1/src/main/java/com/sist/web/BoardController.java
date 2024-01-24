@@ -13,12 +13,13 @@ import org.springframework.web.context.request.ServletRequestAttributes;
 import com.sist.dao.*;
 
 @Controller
+@RequestMapping("board/")
 public class BoardController {
 	@Autowired
     private BoardDAO dao;
 	
 	// list.do
-	@RequestMapping("board/list.do")
+	@RequestMapping("list.do")
 	public String board_list(String page,Model model)
 	{
 	   // 사용자 전송한 모든 데이터는 매개변수로 받는다 ..
@@ -36,25 +37,40 @@ public class BoardController {
 	   model.addAttribute("list", list);
 	   model.addAttribute("curpage", curpage);
 	   model.addAttribute("totalpage", totalpage);
+	   /*
+	    *    class Model
+	    *    {
+	    *       HttpServletRequest request;
+	    *       public Model(HttpServletRequest request)
+	    *       {
+	    *          this.request=request;
+	    *       }
+	    *    }
+	    *    Model model=new Model(request)
+	    *    public void addAttribute("totalpage", totalpage)
+	    *    {
+	    *       request.setAttribute()
+	    *    }
+	    */
 	   // Model => 전송 객체 
 	   
 	   return "board/list"; // /board/list.jsp
 	}
 	// insert.do
-	@RequestMapping("board/insert.do")
+	@RequestMapping("insert.do")
 	public String board_insert()
 	{
 		return "board/insert";
 	}
 	// insert_ok.do => command객체
-	@RequestMapping("board/insert_ok.do")
+	@RequestMapping("insert_ok.do")
 	public String board_insert_ok(BoardVO vo)
 	{
 		dao.boardInsert(vo);
 		return "redirect:list.do";
 	}
 	// detail.do?no=${vo.no }
-	@RequestMapping("board/detail.do")
+	@RequestMapping("detail.do")
 	public String board_detail(int no,Model model)
 	{
 		BoardVO vo=dao.boardDetailData(no);
@@ -62,7 +78,7 @@ public class BoardController {
 		return "board/detail";
 	}
 	
-	@RequestMapping("board/update.do")
+	@RequestMapping("update.do")
 	public String board_update(int no,Model model)
 	{
 		BoardVO vo=dao.boardUpdateData(no);
@@ -70,14 +86,14 @@ public class BoardController {
 		return "board/update";
 	}
 	// 답변
-	@RequestMapping("board/reply.do")
+	@RequestMapping("reply.do")
 	public String board_reply(int pno,Model model)
 	{
 		// JSP로 전송 => 전송객체 => request.setAttribute()
 		model.addAttribute("pno", pno);
 		return "board/reply";
 	}
-	@RequestMapping("board/reply_ok.do")
+	@RequestMapping("reply_ok.do")
 	public String board_reply_ok(int pno,BoardVO vo)
 	{
 		dao.boardReplyInsert(pno, vo);

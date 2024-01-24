@@ -13,7 +13,8 @@
          @Service, 
          @Controller, 
          @RestController, 
-         @ControllerAdvice, 
+         @ControllerAdvice,
+         @RestControllerAdvice, 
          @Configuration
      -->
      <!-- 
