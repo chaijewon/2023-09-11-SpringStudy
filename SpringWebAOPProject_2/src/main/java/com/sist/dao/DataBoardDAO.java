@@ -2,6 +2,7 @@ package com.sist.dao;
 
 import org.apache.ibatis.annotations.Param;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Repository;
 import java.util.*;
 import com.sist.mapper.*;
@@ -23,6 +24,9 @@ import com.sist.mapper.*;
  */
 @Repository
 public class DataBoardDAO {
+    @Autowired
+	private BCryptPasswordEncoder encoder;
+    
 	@Autowired
     private DataBoardMapper mapper;
 	
@@ -42,5 +46,40 @@ public class DataBoardDAO {
 	{
 		mapper.hitIncrement(no);
 		return mapper.databoardDetailData(no);
+	}
+	public DataBoardVO databoardFileInfoData(int no)
+	{
+		return mapper.databoardFileInfoData(no);
+	}
+	public boolean databoardDelete(int no,String pwd)
+	{
+		boolean bCheck=false;
+		String db_pwd=mapper.databoardGetPassword(no);
+		System.out.println("db_pwd:"+db_pwd);
+		System.out.println("pwd:"+pwd);
+		if(encoder.matches(pwd, db_pwd))
+		{
+			bCheck=true;
+			mapper.databoardDelete(no);
+		}
+		
+		return bCheck;
+	}
+	
+	public DataBoardVO databoardUpdateData(int no)
+	{
+		return mapper.databoardDetailData(no);
+	}
+	
+	public boolean databoardUpdate(DataBoardVO vo)
+	{
+		boolean bCheck=false;
+		String db_pwd=mapper.databoardGetPassword(vo.getNo());
+		if(encoder.matches(vo.getPwd(), db_pwd))
+		{
+			bCheck=true;
+			mapper.databoardUpdate(vo);
+		}
+		return bCheck;
 	}
 }
