@@ -15,8 +15,8 @@
        <a href="../food/detail_before.do?fno=${vo.fno }">
         <div class="panel panel-primary">
           <div class="panel-heading">${vo.name }</div>
-          <div class="panel-body">
-          <img src="https://www.menupan.com${vo.poster }" style="width:180px;height:200px">
+          <div class="panel-body text-center">
+           <img src="https://www.menupan.com${vo.poster }" style="width:180px;height:200px" class="img-rounded">
           </div>
          </div>
         </a>
@@ -43,6 +43,15 @@
    <div class="row">
     <h3>최근 방문 맛집</h3>
     <hr>
+    <c:if test="${count!=0 }">
+      <c:forEach var="cvo" items="${cList }" varStatus="s">
+       <c:if test="${s.index<9 }">
+        <a href="../food/detail.do?fno=${cvo.fno }">
+        <img src="https://www.menupan.com${cvo.poster }" style="width: 100px;height: 100px" title="${cvo.name }"/>
+        </a>
+       </c:if>
+      </c:forEach>
+    </c:if>
    </div>
   </div>
 </body>

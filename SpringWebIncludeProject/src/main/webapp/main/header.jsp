@@ -33,6 +33,8 @@
         </ul>
       </li>
       <li><a href="#">실시간 채팅</a></li>
+      <li><a href="../food/find.do">맛집 검색</a></li>
+      <li><a href="#">상품 검색</a></li>
     </ul>
   </div>
 </nav>

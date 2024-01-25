@@ -7,6 +7,25 @@ import org.springframework.web.bind.annotation.GetMapping;
 import java.util.*;
 import com.sist.dao.*;
 import com.sist.vo.FoodVO;
+/*
+ *   1. MVC 동작 
+ *      => web.xml에 DispatcherServlet 
+ *                   = HandlerMapping : @Controller
+ *                   = WebApplicationContext : 클래스 관리
+ *                     => @Autowired => getBean()
+ *   2. 공통 예외처리 : @ControllerAdvice
+ *   3. 인터셉트 사용 : preHandle() , afterCompletion()
+ *   4. 메모리 할당 : Annotation 
+ *   5. AOP
+ *   6. Cookie / HttpSession 
+ *   7. RestController => JSON
+ *      ==> DI / AOP / MVC
+ *      ==> JSON , Rest
+ *   ===============================================
+ *   6. 고급 
+ *      Validation , WebSocket , Security , Task(Betch)
+ *      Spring-Data 
+ */
 @Controller
 public class MainController {
    @Autowired
@@ -23,6 +42,17 @@ public class MainController {
 	  int end=rowSize*curpage;
 	  
 	  List<FoodVO> list=dao.foodListData(start, end);
+	  
+	  for(FoodVO vo:list)
+	  {
+		  String s=vo.getName();
+		  if(s.length()>23)
+		  {
+			 s=s.substring(0,23)+"..";
+			 vo.setName(s);
+		  }
+		  vo.setName(s);
+	  }
 	  int totalpage=dao.foodTotalPage();
 	  
 	  final int BLOCK=10;
