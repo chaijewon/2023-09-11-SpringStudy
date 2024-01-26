@@ -100,7 +100,7 @@ $(function(){
           </tr>
           <tr>
             <td colspan="2" class="text-left" valign="top">
-             <pre style="white-space: pre;border:none;background-color: white;">${rvo.msg }</pre>
+             <pre style="white-space: pre-wrap;border:none;background-color: white;">${rvo.msg }</pre>
             </td>
           </tr>
           <tr style="display: none" id="u${rvo.no }" class="ups">
