@@ -15,9 +15,13 @@ public class SeoulDAO {
 	   mapper.seoulListData(map);
 	   return (List<SeoulVO>)map.get("pResult");
    }
-   public Integer seoulTotalPage()
+   public Integer seoulTotalPage(Map map)
    {
-	   return (Integer)mapper.seoulTotalPage();
-	   
+	   mapper.seoulTotalPage(map);
+	   return (Integer)map.get("pTotal");
+   }
+   public int seoulLocationTotalPage()
+   {
+	   return mapper.seoulLocationTotalPage();
    }
 }

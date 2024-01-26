@@ -39,7 +39,13 @@ public interface SeoulMapper {
 		END;
 		/
 	 */
-	@Select(value="{CALL seoulLocationTotalPage(#{pTotal,mode=OUT,javaType=java.lang.Integer})}")
+	@Select(value="{CALL seoulLocatioTotalPage(#{pTotal,mode=OUT,jdbcType=INTEGER})}")
 	@Options(statementType = StatementType.CALLABLE)
-	public Integer seoulTotalPage();
+	public Integer seoulTotalPage(Map map);
+	/*
+	 *   <select id="seoulLocationTotalPage" resultType="int">
+          SELECT CEIL(COUNT(*)/12.0) FROM seoul_location
+         </select>
+	*/
+	public int seoulLocationTotalPage();
 }

@@ -11,4 +11,7 @@
     <result property="hit" column="hit"/>
     <result property="msg" column="msg"/>
   </resultMap>
+  <select id="seoulLocationTotalPage" resultType="int">
+    SELECT CEIL(COUNT(*)/12.0) FROM seoul_location
+  </select>
 </mapper>
