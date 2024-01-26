@@ -36,7 +36,8 @@
   <div class="container">
     <div class="row">
      <div class="text-right">
-       <a href="../member/login.do" class="btn-sm btn-danger">로그인</a>
+       <a href="../member/login.do" 
+         class="btn-sm btn-danger">로그인</a>
      </div>
     </div>
   </div>

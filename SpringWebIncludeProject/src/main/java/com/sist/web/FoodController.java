@@ -12,6 +12,8 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import com.sist.vo.FoodVO;
+import com.sist.vo.ReplyVO;
+
 /*
  *    RedirectAttributes
  *    Model 
@@ -53,6 +55,9 @@ import com.sist.dao.*;
 public class FoodController {
    @Autowired
    private FoodDAO dao;
+   
+   @Autowired
+   private ReplyDAO rDao;
    // food/detail_before.do?fno=${vo.fno }
    @GetMapping("food/detail_before.do")
    public String food_detail_before(int fno,HttpServletResponse response,RedirectAttributes ra)
@@ -70,7 +75,9 @@ public class FoodController {
    public String food_detail(int fno,Model model)
    {
 	   FoodVO vo=dao.foodDetailData(fno);
+	   List<ReplyVO> rList=rDao.replyListData(fno);
 	   model.addAttribute("vo", vo);
+	   model.addAttribute("rList", rList);
 	   model.addAttribute("main_jsp", "../food/detail.jsp");
 	   return "main/main";
    }
